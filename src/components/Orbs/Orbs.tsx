@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+
 import styles from './Orbs.module.css';
 
-export default function Orbs(): JSX.Element {
+export default function Orbs() {
   return (
     <div className={styles.container}>
       <div className={`${styles.orb} ${styles.orb1}`} />

@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import balloonName from '../../assets/balloon_name.png';
 import styles from './Hero.module.css';
 
-export default function Hero(): JSX.Element {
+export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const balloonRef = useRef<HTMLDivElement>(null);
 
@@ -15,8 +15,6 @@ export default function Hero(): JSX.Element {
     offset: ["start start", "end start"]
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const yText = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);

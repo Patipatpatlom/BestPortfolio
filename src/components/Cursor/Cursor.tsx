@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import WebGLFluid from 'webgl-fluid';
 import styles from './Cursor.module.css';
 
-export default function Cursor(): JSX.Element {
+export default function Cursor() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

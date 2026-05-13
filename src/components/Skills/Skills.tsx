@@ -27,7 +27,7 @@ function getBubbleSize(level: number): number {
   return Math.round(72 + ((level - 60) / 35) * 48);
 }
 
-export default function Skills(): JSX.Element {
+export default function Skills() {
   const [activeTab, setActiveTab] = useState<Category>('all');
   const { ref: headerRef, inView: headerVisible } = useInView(0.2);
   const { ref: cloudRef, inView: cloudVisible } = useInView(0.1);

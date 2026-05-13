@@ -14,7 +14,7 @@ interface Bubble {
   driftSpeed: number;
 }
 
-export default function Bubbles(): JSX.Element {
+export default function Bubbles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

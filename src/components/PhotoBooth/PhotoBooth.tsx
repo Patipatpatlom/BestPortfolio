@@ -10,7 +10,7 @@ interface PrintedPhoto {
   rotate: number;
 }
 
-export default function PhotoBooth(): JSX.Element {
+export default function PhotoBooth() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [photo, setPhoto] = useState<string | null>(null);

@@ -2,7 +2,7 @@ import { useInView } from '../../hooks/useScrollProgress';
 import profileImg from '../../assets/portrait.jpg';
 import styles from './About.module.css';
 
-export default function About(): JSX.Element {
+export default function About() {
   const { ref: textRef, inView: textVisible } = useInView(0.15);
   const { ref: avatarRef, inView: avatarVisible } = useInView(0.15);
 
@@ -67,10 +67,10 @@ export default function About(): JSX.Element {
               <span className={styles.avatarDot} />
             </div>
             <div className={styles.avatarRingInner} />
-            <img 
-              src={profileImg} 
-              alt="Patipat Patlom" 
-              className={styles.avatar} 
+            <img
+              src={profileImg}
+              alt="Patipat Patlom"
+              className={styles.avatar}
             />
           </div>
         </div>

@@ -43,7 +43,7 @@ function randomBetween(a: number, b: number): number {
   return a + Math.random() * (b - a);
 }
 
-export default function StarField(): JSX.Element {
+export default function StarField() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {

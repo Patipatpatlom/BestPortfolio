@@ -12,7 +12,7 @@ import Contact from './components/Contact/Contact';
 import Noise from './components/Noise/Noise';
 import Orbs from './components/Orbs/Orbs';
 
-export default function App(): JSX.Element {
+export default function App() {
   return (
     <>
       <Noise />

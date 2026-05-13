@@ -25,7 +25,7 @@ interface CardProps {
   index: number;
 }
 
-function ProjectCard({ project, index }: CardProps): JSX.Element {
+function ProjectCard({ project, index }: CardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const { ref: revealRef, inView } = useInView(0.1);
 
@@ -109,7 +109,7 @@ function ProjectCard({ project, index }: CardProps): JSX.Element {
 }
 
 /* ---- Section ---- */
-export default function Projects(): JSX.Element {
+export default function Projects() {
   const { ref: headerRef, inView: headerVisible } = useInView(0.2);
 
   return (

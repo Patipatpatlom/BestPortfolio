@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styles from './Navbar.module.css';
 import { NAV_ITEMS } from '../../data/portfolio';
 
-export default function Navbar(): JSX.Element {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('hero');
   const [mobileOpen, setMobileOpen] = useState(false);
