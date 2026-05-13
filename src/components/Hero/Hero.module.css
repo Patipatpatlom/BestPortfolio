@@ -147,7 +147,7 @@
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--cyan);
-  margin-bottom: 1.5rem;
+  margin-bottom: 3.5rem;
   background: linear-gradient(90deg, var(--cyan), var(--lime));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -288,14 +288,7 @@
   }
 }
 
-.subtitle {
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  color: var(--text-secondary);
-  font-weight: 400;
-  max-width: 600px;
-  margin-bottom: 3.5rem;
-  line-height: 1.5;
-}
+
 
 .actions {
   display: flex;

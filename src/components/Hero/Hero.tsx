@@ -102,20 +102,11 @@ export default function Hero() {
           Full-Stack Developer &amp; UX/UI Designer
         </motion.p>
 
-        <motion.h2
-          className={styles.subtitle}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          Crafting digital experiences that defy gravity.
-        </motion.h2>
-
         <motion.div
           className={styles.actions}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
         >
           <a href="#projects" className={styles.primaryBtn}>
             <span className={styles.btnText}>View Work</span>
@@ -127,16 +118,7 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      <motion.div
-        className={styles.scrollIndicator}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-      >
-        <div className={styles.mouse}>
-          <div className={styles.wheel}></div>
-        </div>
-      </motion.div>
+
     </section>
   );
 }

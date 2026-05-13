@@ -1,0 +1,226 @@
+.heartbeat {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 4px;
+  height: 4px;
+  background: #00f5ff;
+  border-radius: 50%;
+  z-index: 10002;
+  animation: heartbeat 0.5s infinite alternate;
+}
+
+@keyframes heartbeat {
+  from { opacity: 0.2; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.5); }
+}
+
+.controls {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 10000;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: rgba(10, 10, 30, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  border-radius: 999px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.toggle:hover {
+  border-color: #00f5ff;
+  transform: translateY(-4px);
+  box-shadow: 0 15px 50px rgba(0, 245, 255, 0.3);
+}
+
+.toggle.active {
+  background: #00f5ff;
+  color: #02020e;
+  border-color: #fff;
+  box-shadow: 0 0 30px rgba(0, 245, 255, 0.6);
+}
+
+.miniLoader {
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.debugVideo {
+  position: fixed;
+  bottom: 100px;
+  left: 30px;
+  width: 160px;
+  height: 120px;
+  background: #000;
+  border: 2px solid #00f5ff;
+  border-radius: 12px;
+  z-index: 10000;
+  object-fit: cover;
+  transform: scaleX(-1);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+}
+
+.debugVideo.showVideo {
+  opacity: 0.8;
+}
+
+.pointer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  z-index: 10001;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.innerPointer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #00f5ff, 0 0 40px #00f5ff;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #00f5ff;
+  border-radius: 50%;
+  animation: ringPulse 1.5s ease-out infinite;
+}
+
+@keyframes ringPulse {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.status {
+  position: fixed;
+  bottom: 95px;
+  left: 45px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: rgba(0, 245, 255, 0.8);
+  font-weight: 900;
+  text-transform: uppercase;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 12px;
+  border-radius: 4px;
+  backdrop-filter: blur(5px);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.green { background: #00ff88; box-shadow: 0 0 10px #00ff88; }
+.orange { background: #ffaa00; animation: blink 1s infinite; }
+
+@keyframes blink {
+  50% { opacity: 0.3; }
+}
+
+.scrollZoneTop, .scrollZoneBottom {
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  height: 35vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.scrollZoneTop {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 245, 255, 0.08), transparent);
+}
+
+.scrollZoneBottom {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 245, 255, 0.08), transparent);
+}
+
+.zoneText {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  color: #00f5ff;
+  opacity: 0.2;
+  letter-spacing: 0.5em;
+  font-weight: 900;
+}
+
+.centerLine {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 100vw;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.3), transparent);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+:global(body.air-mode-active) {
+  scroll-behavior: auto !important;
+  overflow-y: auto !important;
+}
+
+.skeletonOverlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.indexPoint {
+  fill: #fff;
+  filter: drop-shadow(0 0 10px #00f5ff);
+  animation: pointPulse 1s infinite alternate;
+}
+
+@keyframes pointPulse {
+  from { r: 4; }
+  to { r: 8; }
+}

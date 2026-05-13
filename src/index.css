@@ -54,8 +54,8 @@
   --text-secondary: rgba(18, 18, 36, 0.7);
   --text-muted: rgba(18, 18, 36, 0.5);
 
+  /* Restored colorful Y2K gradient */
   --bg-image: linear-gradient(180deg, #63aaff 0%, #ffb99c 65%, #cca2eb 100%);
-
 }
 
 :root {
