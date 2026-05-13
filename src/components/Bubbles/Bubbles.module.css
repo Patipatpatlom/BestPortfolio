@@ -1,0 +1,14 @@
+.canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1; /* Below content */
+  display: none;
+}
+
+:global([data-theme="light"]) .canvas {
+  display: block;
+}

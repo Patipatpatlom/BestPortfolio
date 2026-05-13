@@ -1,0 +1,464 @@
+.section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--gutter);
+  overflow: hidden;
+}
+
+.inner {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Floating Shapes */
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  will-change: transform;
+}
+
+.shape1 {
+  width: 300px;
+  height: 300px;
+  top: 15%;
+  left: 10%;
+  animation: floatSpin 20s infinite linear;
+}
+
+.shape2 {
+  width: 150px;
+  height: 150px;
+  bottom: 20%;
+  right: 15%;
+  animation: floatSpin 15s infinite linear reverse;
+}
+
+.shape3 {
+  width: 400px;
+  height: 400px;
+  top: 40%;
+  right: -5%;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation: blobFlow 25s infinite alternate ease-in-out;
+}
+
+/* ── Light Mode Y2K 3D Shapes ── */
+[data-theme="light"] .shape {
+  border: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* Shape 1: Holographic Y2K CD-ROM */
+[data-theme="light"] .shape1 {
+  background: conic-gradient(from 0deg at 50% 50%,
+      #ff9a9e, #fecfef, #a1c4fd, #c2e9fb, #d4fc79, #96e6a1, #fdcbf1, #ff9a9e);
+  border: 4px solid rgba(255, 255, 255, 0.7);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 15%, black 16%);
+  mask-image: radial-gradient(circle at 50% 50%, transparent 15%, black 16%);
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+}
+
+/* Shape 2: Glossy Pink Bubble */
+[data-theme="light"] .shape2 {
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 1) 0%, rgba(255, 105, 180, 0.8) 40%, rgba(0, 245, 255, 0.6) 80%);
+  box-shadow:
+    inset -10px -10px 20px rgba(255, 105, 180, 0.6),
+    inset 10px 10px 30px rgba(255, 255, 255, 1),
+    0 15px 35px rgba(255, 105, 180, 0.4);
+  overflow: visible;
+}
+
+/* Retro Windows 95 Button attached to Shape 2 */
+[data-theme="light"] .shape2::before {
+  content: "OK";
+  position: absolute;
+  bottom: -20px;
+  right: -30px;
+  background: #c0c0c0;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  color: #000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 16px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+  transform: rotate(15deg);
+  animation: floatSpin 10s infinite linear reverse;
+}
+
+/* Shape 3: Y2K Chrome Star */
+[data-theme="light"] .shape3 {
+  background: conic-gradient(from 45deg, #e0e0e0, #ffffff, #999999, #ffffff, #e0e0e0);
+  border-radius: 0;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: floatSpin 20s infinite linear reverse;
+}
+
+
+
+@keyframes floatSpin {
+  0% {
+    transform: rotate(0deg) translate(20px, 20px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translate(20px, 20px) rotate(-360deg);
+  }
+}
+
+@keyframes blobFlow {
+  0% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotate(0deg);
+  }
+
+  50% {
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    transform: rotate(180deg) scale(1.1);
+  }
+
+  100% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotate(360deg) scale(0.9);
+  }
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, var(--cyan), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulseGlow 3s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(0, 245, 255, 0.3));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 15px rgba(0, 245, 255, 0.8));
+  }
+}
+
+/* ── Balloon Name ─────────────────────────────── */
+.balloonWrap {
+  position: relative;
+  margin-bottom: 1.5rem;
+  cursor: none;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.balloonImg {
+  width: clamp(280px, 60vw, 720px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 40px rgba(180, 160, 255, 0.35)) drop-shadow(0 0 80px rgba(100, 180, 255, 0.15));
+  transition: filter 0.5s ease;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.balloonImgHovered {
+  filter:
+    drop-shadow(0 0 60px rgba(200, 160, 255, 0.7)) drop-shadow(0 0 100px rgba(100, 200, 255, 0.45)) brightness(1.15);
+  animation: shimmerPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes shimmerPulse {
+
+  0%,
+  100% {
+    filter:
+      drop-shadow(0 0 60px rgba(200, 160, 255, 0.7)) drop-shadow(0 0 100px rgba(100, 200, 255, 0.45)) brightness(1.15);
+  }
+
+  50% {
+    filter:
+      drop-shadow(0 0 90px rgba(255, 180, 255, 0.9)) drop-shadow(0 0 140px rgba(120, 220, 255, 0.6)) brightness(1.25);
+  }
+}
+
+.balloonGlow {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 60px;
+  background: radial-gradient(ellipse at center,
+      rgba(180, 160, 255, 0.2) 0%,
+      rgba(100, 200, 255, 0.08) 50%,
+      transparent 100%);
+  filter: blur(20px);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: opacity 0.4s ease, width 0.4s ease;
+  opacity: 0.6;
+}
+
+.balloonGlowActive {
+  width: 80%;
+  height: 80px;
+  opacity: 1;
+  background: radial-gradient(ellipse at center,
+      rgba(220, 180, 255, 0.5) 0%,
+      rgba(140, 210, 255, 0.25) 50%,
+      transparent 100%);
+}
+
+/* Sparkle particles */
+.sparkle {
+  position: absolute;
+  color: #fff;
+  font-size: 1.2rem;
+  pointer-events: none;
+  animation: sparklePop 0.8s ease forwards;
+  text-shadow: 0 0 10px rgba(200, 180, 255, 0.9), 0 0 20px rgba(100, 200, 255, 0.7);
+}
+
+.s1 {
+  top: 10%;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.s2 {
+  top: 15%;
+  right: 10%;
+  animation-delay: 0.15s;
+}
+
+.s3 {
+  bottom: 20%;
+  left: 18%;
+  animation-delay: 0.25s;
+}
+
+.s4 {
+  bottom: 15%;
+  right: 8%;
+  animation-delay: 0.1s;
+}
+
+@keyframes sparklePop {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1.4) rotate(30deg);
+  }
+
+  70% {
+    opacity: 0.8;
+    transform: scale(1) rotate(60deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.5) rotate(90deg);
+  }
+}
+
+.subtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: var(--text-secondary);
+  font-weight: 400;
+  max-width: 600px;
+  margin-bottom: 3.5rem;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Extreme Glassmorphic Button */
+.primaryBtn {
+  position: relative;
+  padding: 1rem 2.5rem;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--void);
+  background: var(--cyan);
+  overflow: hidden;
+  transition: all 0.4s var(--ease-float);
+  cursor: none;
+  pointer-events: auto;
+}
+
+.btnText {
+  position: relative;
+  z-index: 2;
+}
+
+.btnGlow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(transparent, transparent, transparent, #fff);
+  animation: spinGlow 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 1;
+}
+
+.primaryBtn::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: var(--cyan);
+  border-radius: 999px;
+  z-index: 1;
+  transition: background 0.4s;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 40px rgba(0, 245, 255, 0.4), 0 0 20px rgba(0, 245, 255, 0.2) inset;
+}
+
+.primaryBtn:hover .btnGlow {
+  opacity: 0.5;
+}
+
+.primaryBtn:hover::before {
+  background: var(--void);
+}
+
+.primaryBtn:hover .btnText {
+  color: var(--cyan);
+}
+
+@keyframes spinGlow {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ghost Button */
+.secondaryBtn {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  padding: 1rem 2.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s var(--ease-float);
+  pointer-events: auto;
+  cursor: none;
+}
+
+.secondaryBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Scroll Indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mouse {
+  width: 24px;
+  height: 38px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.wheel {
+  width: 4px;
+  height: 8px;
+  background: var(--cyan);
+  border-radius: 2px;
+  animation: scrollWheel 2s infinite;
+}
+
+@keyframes scrollWheel {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .shape {
+    display: none;
+  }
+
+  .balloonImg {
+    width: clamp(260px, 90vw, 440px);
+  }
+}
