@@ -147,7 +147,8 @@
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--cyan);
-  margin-bottom: 3.5rem;
+  margin-top: -1rem; /* Move up closer to name */
+  margin-bottom: 2rem; /* Reduce gap to buttons */
   background: linear-gradient(90deg, var(--cyan), var(--lime));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -167,7 +168,7 @@
 /* ── Balloon Name ─────────────────────────────── */
 .balloonWrap {
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem; /* Reduced gap to subtitle */
   cursor: none;
   transform-style: preserve-3d;
   will-change: transform;

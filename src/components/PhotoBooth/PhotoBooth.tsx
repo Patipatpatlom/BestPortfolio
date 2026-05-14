@@ -41,8 +41,21 @@ export default function PhotoBooth() {
       stopCamera();
       setPhoto(null);
     }
-    return () => stopCamera();
-  }, [isOpen]);
+
+    const handlePeace = () => {
+      if (isOpen && !photo) {
+        takePhoto();
+      } else if (!isOpen) {
+        setIsOpen(true);
+      }
+    };
+
+    window.addEventListener('gesture-peace', handlePeace);
+    return () => {
+      stopCamera();
+      window.removeEventListener('gesture-peace', handlePeace);
+    };
+  }, [isOpen, photo]);
 
   const startCamera = async () => {
     try {

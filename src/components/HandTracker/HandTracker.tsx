@@ -14,6 +14,7 @@ export default function HandTracker() {
   const [isActive, setIsActive] = useState(false);
   const [isModelLoaded, setIsModelLoaded] = useState(false);
   const [isHandVisible, setIsHandVisible] = useState(false);
+  const [isPinching, setIsPinching] = useState(false);
   const [pointerPos, setPointerPos] = useState({ x: 0, y: 0 });
   const [landmarks, setLandmarks] = useState<any[]>([]);
   const [scrollSpeed, setScrollSpeed] = useState(0);
@@ -64,18 +65,17 @@ export default function HandTracker() {
             const middleTip = currentLandmarks[12];
             const ringTip = currentLandmarks[16];
             const pinkyTip = currentLandmarks[20];
-            
+
             const x = (1 - indexTip.x) * window.innerWidth;
             const y = indexTip.y * window.innerHeight;
             setPointerPos({ x, y });
 
             // 1. Gesture: Peace Sign (✌️) for PhotoBooth
-            // Index and Middle are UP, others are DOWN
             const isIndexUp = indexTip.y < currentLandmarks[6].y;
             const isMiddleUp = middleTip.y < currentLandmarks[10].y;
             const isRingDown = ringTip.y > currentLandmarks[14].y;
             const isPinkyDown = pinkyTip.y > currentLandmarks[18].y;
-            
+
             if (isIndexUp && isMiddleUp && isRingDown && isPinkyDown) {
               window.dispatchEvent(new CustomEvent('gesture-peace'));
             }
@@ -83,10 +83,13 @@ export default function HandTracker() {
             // 2. Gesture: Pinch (👌) for Clicking
             const pinchDist = Math.hypot(indexTip.x - thumbTip.x, indexTip.y - thumbTip.y);
             if (pinchDist < 0.05) {
+              setIsPinching(true);
               const el = document.elementFromPoint(x, y);
               if (el && !el.classList.contains(styles.pointer)) {
                 (el as HTMLElement).click();
               }
+            } else {
+              setIsPinching(false);
             }
 
             // 3. Scroll Logic
@@ -97,10 +100,10 @@ export default function HandTracker() {
             if (Math.abs(offset) > deadzone) {
               const direction = Math.sign(offset);
               const strength = Math.pow(Math.abs(offset) - deadzone, 1.2) * 500;
-              
+
               window.scrollBy({ top: direction * strength, behavior: 'auto' });
               document.documentElement.scrollTop += direction * strength;
-              
+
               setScrollSpeed(Math.round(direction * strength));
             } else {
               setScrollSpeed(0);
@@ -109,6 +112,7 @@ export default function HandTracker() {
             setIsHandVisible(false);
             setLandmarks([]);
             setScrollSpeed(0);
+            setIsPinching(false);
           }
         });
 
@@ -139,8 +143,8 @@ export default function HandTracker() {
   const toggle = async () => {
     if (!isActive) {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ 
-          video: { width: 640, height: 480 } 
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { width: 640, height: 480 }
         });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
@@ -161,6 +165,7 @@ export default function HandTracker() {
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
       setScrollSpeed(0);
       setLandmarks([]);
+      setIsPinching(false);
     }
   };
 
@@ -173,7 +178,7 @@ export default function HandTracker() {
   return (
     <>
       <div className={styles.controls}>
-        <button 
+        <button
           className={`${styles.toggle} ${isActive ? styles.active : ''}`}
           onClick={toggle}
           disabled={!isModelLoaded}
@@ -184,11 +189,11 @@ export default function HandTracker() {
         </button>
       </div>
 
-      <video 
-        ref={videoRef} 
-        className={`${styles.debugVideo} ${isActive ? styles.showVideo : ''}`} 
-        playsInline 
-        muted 
+      <video
+        ref={videoRef}
+        className={`${styles.debugVideo} ${isActive ? styles.showVideo : ''}`}
+        playsInline
+        muted
       />
 
       <AnimatePresence>
@@ -202,28 +207,34 @@ export default function HandTracker() {
             {landmarks.length > 0 && (
               <svg className={styles.skeletonOverlay}>
                 {landmarks.map((point: any, i: number) => (
-                  <circle 
-                    key={i} 
-                    cx={(1 - point.x) * 100 + '%'} 
-                    cy={point.y * 100 + '%'} 
-                    r="4" 
-                    fill={i === 8 ? "#fff" : "#00f5ff"} 
+                  <circle
+                    key={i}
+                    cx={(1 - point.x) * 100 + '%'}
+                    cy={point.y * 100 + '%'}
+                    r={i === 8 ? (isPinching ? 10 : 4) : 3}
+                    fill={i === 8 ? (isPinching ? "#ff0055" : "#fff") : "rgba(0, 245, 255, 0.5)"}
                     className={i === 8 ? styles.indexPoint : ''}
+                    style={{ transition: 'all 0.1s ease' }}
                   />
                 ))}
               </svg>
             )}
 
             {isHandVisible && (
-              <motion.div 
+              <motion.div
                 className={styles.pointer}
                 style={{ left: pointerPos.x, top: pointerPos.y }}
                 initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
+                animate={{
+                  opacity: 1,
+                  scale: isPinching ? 0.6 : 1,
+                  background: isPinching ? 'rgba(255, 0, 85, 0.4)' : 'transparent',
+                  boxShadow: isPinching ? '0 0 30px #ff0055' : '0 0 20px rgba(0, 245, 255, 0.3)'
+                }}
                 exit={{ opacity: 0, scale: 0 }}
               >
-                <div className={styles.innerPointer} />
-                <div className={styles.ring} />
+                <div className={styles.innerPointer} style={{ background: isPinching ? '#ff0055' : '#fff' }} />
+                <div className={styles.ring} style={{ borderColor: isPinching ? '#ff0055' : '#00f5ff' }} />
               </motion.div>
             )}
           </>

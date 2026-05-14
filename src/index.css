@@ -74,10 +74,52 @@
   --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* ── Smooth Scroll (Lenis) ────────────────────── */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }
+
+/* ── Mont-Fort Sticky Stacking ────────────────── */
+.liquid-content {
+  position: relative;
+  z-index: 2;
+  filter: url(#liquid-distortion);
+}
+
+section {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Removed solid backgrounds to show StarField and Bubbles */
+  background: transparent;
+}
+
+#hero { z-index: 10; }
+#about { z-index: 9; }
+#projects { z-index: 8; }
+#skills { z-index: 7; }
+#contact { z-index: 6; }
 
 body {
   background-color: var(--void);
@@ -192,5 +234,13 @@ img {
 
   a {
     cursor: pointer;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
   }
 }

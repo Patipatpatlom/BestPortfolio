@@ -44,15 +44,15 @@ export default function Hero() {
       >
         {/* Floating Animation Wrapper */}
         <motion.div
-          animate={{ 
+          animate={{
             y: [0, -15, 8, -5, 0],
             x: [0, 10, -6, 8, 0],
             rotateZ: [0, 1.5, -1, 0.5, 0]
           }}
-          transition={{ 
-            duration: 10, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
           }}
         >
           {/* Balloon Name — 3D Tilt */}

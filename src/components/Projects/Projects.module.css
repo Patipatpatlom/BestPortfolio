@@ -26,7 +26,10 @@
   gap: 0.75rem;
 }
 
-.label::before { content: '03'; opacity: 0.4; }
+.label::before {
+  content: '03';
+  opacity: 0.4;
+}
 
 .heading {
   font-family: var(--font-display);
@@ -68,7 +71,10 @@
 
 .cardGlow {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 245, 255, 0.05), transparent 40%);
   opacity: 0;
   transition: opacity 0.3s;

@@ -27,24 +27,24 @@ export default function LoadingScreen() {
   return (
     <AnimatePresence mode="wait">
       {!isDone && (
-        <motion.div 
+        <motion.div
           className={styles.container}
           initial={{ opacity: 1 }}
-          exit={{ 
+          exit={{
             opacity: 0,
-            transition: { duration: 0.8, delay: 0.4 } 
+            transition: { duration: 0.8, delay: 0.4 }
           }}
         >
           {/* Subtle noise texture */}
           <div className={styles.noise} />
-          
+
           <div className={styles.content}>
             <div className={styles.mainGroup}>
-              <motion.div 
+              <motion.div
                 className={styles.letterB}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ 
+                exit={{
                   scale: 30,
                   opacity: 0,
                   filter: "blur(20px)",
@@ -54,15 +54,15 @@ export default function LoadingScreen() {
               >
                 B
               </motion.div>
-              
+
               {/* Refractive Glow */}
-              <motion.div 
+              <motion.div
                 className={styles.glow}
                 exit={{ scale: 5, opacity: 0 }}
               />
             </div>
 
-            <motion.div 
+            <motion.div
               className={styles.progressSection}
               exit={{ opacity: 0, y: 20 }}
             >
@@ -71,9 +71,9 @@ export default function LoadingScreen() {
                   {progress < 10 ? `0${progress}` : progress}%
                 </motion.span>
               </div>
-              
+
               <div className={styles.barContainer}>
-                <motion.div 
+                <motion.div
                   className={styles.barFill}
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
@@ -81,7 +81,7 @@ export default function LoadingScreen() {
                 />
               </div>
 
-              <motion.div 
+              <motion.div
                 className={styles.status}
                 animate={{ opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 2, repeat: Infinity }}
