@@ -3,7 +3,6 @@ import Lenis from '@studio-freight/lenis';
 import './index.css';
 import Cursor from './components/Cursor/Cursor';
 import StarField from './components/StarField/StarField';
-import Bubbles from './components/Bubbles/Bubbles';
 import PhotoBooth from './components/PhotoBooth/PhotoBooth';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
@@ -75,9 +74,6 @@ export default function App() {
     };
   }, []);
 
-  // Calculate 3D perspective based on scroll velocity (Apply this to inner sections if needed)
-  // For now, we remove it from the main container to fix Sticky scroll
-  
   return (
     <>
       <LoadingScreen />
@@ -86,7 +82,6 @@ export default function App() {
 
       {/* Background canvas */}
       <StarField />
-      <Bubbles />
 
       {/* Interactive Floating Widgets */}
       <PhotoBooth />
@@ -100,7 +95,7 @@ export default function App() {
       {/* Navigation */}
       <Navbar />
 
-      {/* Main content - NO TRANSFORM HERE to keep Sticky working */}
+      {/* Main content */}
       <main className="liquid-content">
         <Hero />
         <About />
