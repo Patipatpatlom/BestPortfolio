@@ -11,88 +11,54 @@ export default function LoadingScreen() {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          // Small delay before closing to show 100%
-          setTimeout(() => setIsDone(true), 800);
+          setTimeout(() => setIsDone(true), 500);
           return 100;
         }
-        // Realistic non-linear progress
-        const diff = Math.floor(Math.random() * 7) + 1;
-        return Math.min(100, prev + diff);
+        return prev + 1;
       });
-    }, 60);
+    }, 25); // Faster progress for better feeling
 
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       {!isDone && (
-        <motion.div
+        <motion.div 
           className={styles.container}
+          style={{ position: 'fixed' }}
           initial={{ opacity: 1 }}
-          exit={{
+          exit={{ 
             opacity: 0,
-            transition: { duration: 0.8, delay: 0.4 }
+            transition: { duration: 0.6, ease: "easeInOut" } 
           }}
         >
-          {/* Subtle noise texture */}
-          <div className={styles.noise} />
-
           <div className={styles.content}>
             <div className={styles.mainGroup}>
-              <motion.div
+              <motion.h1 
                 className={styles.letterB}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{
-                  scale: 30,
-                  opacity: 0,
-                  filter: "blur(20px)",
-                  transition: { duration: 1, ease: [0.7, 0, 0.3, 1] }
-                }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                B
-              </motion.div>
-
-              {/* Refractive Glow */}
-              <motion.div
-                className={styles.glow}
-                exit={{ scale: 5, opacity: 0 }}
-              />
+                PATIPAT
+              </motion.h1>
+              <div className={styles.glow} />
             </div>
 
-            <motion.div
-              className={styles.progressSection}
-              exit={{ opacity: 0, y: 20 }}
-            >
-              <div className={styles.percentageWrapper}>
-                <motion.span className={styles.percentage}>
-                  {progress < 10 ? `0${progress}` : progress}%
-                </motion.span>
-              </div>
-
+            <div className={styles.progressSection}>
               <div className={styles.barContainer}>
-                <motion.div
-                  className={styles.barFill}
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progress}%` }}
-                  transition={{ ease: "linear" }}
+                <motion.div 
+                  className={styles.barFill} 
+                  style={{ width: `${progress}%` }}
+                  transition={{ type: "spring", stiffness: 100, damping: 20 }}
                 />
               </div>
-
-              <motion.div
-                className={styles.status}
-                animate={{ opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                LOADING SYSTEM
-              </motion.div>
-            </motion.div>
-          </div>
-
-          <div className={styles.footer}>
-            <span>© PATIPAT PATLOM 2026</span>
+              <div className={styles.percentageWrapper}>
+                <span className={styles.percentage}>{progress}%</span>
+              </div>
+              <span className={styles.status}>Loading Experience</span>
+            </div>
           </div>
         </motion.div>
       )}
