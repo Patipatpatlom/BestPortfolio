@@ -101,21 +101,6 @@ export default function Hero() {
         >
           Full-Stack Developer &amp; UX/UI Designer
         </motion.p>
-
-        <motion.div
-          className={styles.actions}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          <a href="#projects" className={styles.primaryBtn}>
-            <span className={styles.btnText}>View Work</span>
-            <span className={styles.btnGlow}></span>
-          </a>
-          <a href="#contact" className={styles.secondaryBtn}>
-            Let's Talk
-          </a>
-        </motion.div>
       </motion.div>
 
 
