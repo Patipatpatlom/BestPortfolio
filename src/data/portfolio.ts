@@ -25,7 +25,7 @@ export const PROJECTS: Project[] = [
     accentColor: '#00f5ff',
     links: {
       github: 'https://github.com/Patipatpatlom',
-      live: '#',
+      live: 'https://realorcake.vercel.app/login',
     },
     featured: true,
   },
@@ -41,7 +41,7 @@ export const PROJECTS: Project[] = [
     accentColor: '#ff6b35',
     links: {
       github: 'https://github.com/Patipatpatlom',
-      live: '#',
+      live: 'https://4b1k.vercel.app/',
     },
     featured: true,
   },
