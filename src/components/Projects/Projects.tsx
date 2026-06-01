@@ -63,46 +63,48 @@ function ProjectCard({ project, index }: CardProps) {
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
     >
-      <div className={styles.cardBg} />
+      <div className={styles.cardGlow} />
 
-      <div className={styles.cardTop}>
-        <span className={styles.cardYear}>{project.year}</span>
-        <div className={styles.cardLinks}>
-          {project.links.github && (
-            <a
-              href={project.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.cardLink}
-              data-hover
-              aria-label={`${project.title} GitHub`}
-            >
-              <GitHubIcon />
-            </a>
-          )}
-          {project.links.live && (
-            <a
-              href={project.links.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.cardLink}
-              data-hover
-              aria-label={`${project.title} live demo`}
-            >
-              <ExternalIcon />
-            </a>
-          )}
+      <div className={styles.cardContent}>
+        <div className={styles.cardHeader}>
+          <span className={styles.year}>{project.year}</span>
+          <div className={styles.links}>
+            {project.links.github && (
+              <a
+                href={project.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.iconLink}
+                data-hover
+                aria-label={`${project.title} GitHub`}
+              >
+                <GitHubIcon />
+              </a>
+            )}
+            {project.links.live && (
+              <a
+                href={project.links.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.iconLink}
+                data-hover
+                aria-label={`${project.title} live demo`}
+              >
+                <ExternalIcon />
+              </a>
+            )}
+          </div>
         </div>
-      </div>
 
-      <h3 className={styles.cardTitle}>{project.title}</h3>
-      <p className={styles.cardRole}>{project.role}</p>
-      <p className={styles.cardDesc}>{project.description}</p>
+        <h3 className={styles.title}>{project.title}</h3>
+        <p className={styles.role}>{project.role}</p>
+        <p className={styles.description}>{project.description}</p>
 
-      <div className={styles.techStack}>
-        {project.tech.map((t) => (
-          <span key={t} className={styles.techTag}>{t}</span>
-        ))}
+        <div className={styles.techList}>
+          {project.tech.map((t) => (
+            <span key={t} className={styles.techItem}>{t}</span>
+          ))}
+        </div>
       </div>
     </div>
   );
