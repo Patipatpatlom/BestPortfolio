@@ -14,6 +14,22 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: 'chef-choice',
+    title: 'De Chef\'s Choice (Food Cost & Recipe Management)',
+    description:
+      'Developed a comprehensive food cost and recipe management application tailored for culinary professionals. Built to streamline ingredient tracking, dynamic recipe scaling, and real-time profitability analysis. Deployed to production with active user adoption, focusing on an intuitive, responsive interface designed to optimize high-pressure kitchen operations.',
+    tech: ['React.js', 'Node.js', 'TailwindCSS', 'Prisma'],
+    role: 'Full-Stack Developer',
+    year: '2026',
+    color: 'rgba(234, 179, 8, 0.08)',
+    accentColor: '#eab308',
+    links: {
+      github: 'https://github.com/Patipatpatlom',
+      live: 'https://foodcostchefchoice-project-client.vercel.app/login',
+    },
+    featured: true,
+  },
+  {
     id: 'realorcake',
     title: 'RealorCake (Full-Stack E-commerce Web App)',
     description:
