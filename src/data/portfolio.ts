@@ -14,6 +14,22 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: 'photo-booth',
+    title: 'Interactive 3D Photo Booth',
+    description:
+      'Engineered an immersive web-based photo booth application leveraging modern 3D graphics and web technologies. Integrated 3D elements to create an engaging user experience, allowing users to interact with dynamic environments while capturing photos. Optimized for performance and responsiveness across devices to ensure seamless real-time rendering and interactive functionality.',
+    tech: ['React.js', 'Three.js', 'React Three Fiber', 'TailwindCSS'],
+    role: 'Frontend Developer',
+    year: '2026',
+    color: 'rgba(236, 72, 153, 0.08)',
+    accentColor: '#ec4899',
+    links: {
+      github: 'https://github.com/Patipatpatlom',
+      live: 'https://photo-boothv1.vercel.app/',
+    },
+    featured: true,
+  },
+  {
     id: 'chef-choice',
     title: 'De Chef\'s Choice (Food Cost & Recipe Management)',
     description:
